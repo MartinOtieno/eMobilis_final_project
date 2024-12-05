@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<!-- Gallery Section -->
+<section id="gallery" class="gallery section light-background">
+
+          <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h2>Gallery</h2>
+            <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+            <h4>Moments of Life-Saving Impact</h4>
+          </div><!-- End Section Title -->
+        
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+        
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "centeredSlides": true,
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  },
+                  "breakpoints": {
+                    "320": {
+                      "slidesPerView": 1,
+                      "spaceBetween": 0
+                    },
+                    "768": {
+                      "slidesPerView": 3,
+                      "spaceBetween": 20
+                    },
+                    "1200": {
+                      "slidesPerView": 5,
+                      "spaceBetween": 20
+                    }
+                  }
+                }
+              </script>
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery1.jpg' %}"><img src="{% static 'assets\img\gallery\gallery1.jpg' %}" class="img-fluid" alt="Gallery image 1"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery2.jpg' %}"><img src="{% static 'assets\img\gallery\gallery2.jpg' %}" class="img-fluid" alt="Gallery image 2"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery3.jpg' %}"><img src="{% static 'assets\img\gallery\gallery3.jpg' %}" class="img-fluid" alt="Gallery image 3"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery4.jpg' %}"><img src="{% static 'assets\img\gallery\gallery4.jpg' %}" class="img-fluid" alt="Gallery image 4"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery5.jpg' %}"><img src="{% static 'assets\img\gallery\gallery5.jpg' %}" class="img-fluid" alt="Gallery image 5"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery6.jpg' %}"><img src="{% static 'assets\img\gallery\gallery6.jpg' %}" class="img-fluid" alt="Gallery image 6"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery7.jpg.jpg' %}"><img src="{% static 'assets\img\gallery\gallery7.jpg' %}" class="img-fluid" alt="Gallery image 7"></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{% static 'assets\img\gallery\gallery8.jpg' %}"><img src="{% static 'assets\img\gallery\gallery8.jpg' %}" class="img-fluid" alt="Gallery image 8"></a></div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+        
+          </div>
+        
+        </section><!-- /Gallery Section -->
+{% endblock %}

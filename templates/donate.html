@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}  
+
+{% block title %}Donate Blood{% endblock %}  
+
+{% block content %}
+<!-- Blood Donation Section -->
+<section id="donate-blood" class="donate-blood section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Donate Blood</h2>
+        <p><span>Save Lives</span> <span class="description-title">Register to Donate<br></span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 donation-img" style="background-image: url({% static 'assets/img/blood2.jpg' %});"></div>
+            <div class="col-lg-8 d-flex align-items-center donation-form-bg" data-aos="fade-up" data-aos-delay="200">
+                <form method="POST" enctype="multipart/form-data" style="margin-left:20px; margin-right:20px;">
+                    {% csrf_token %}
+                    <div class="row gy-4">
+                        <!-- Name Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="name" class="form-label">Your Name:</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Full Name" required="">
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="email" class="form-label">Your Email:</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                        </div>
+
+                        <!-- Phone Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="phone" class="form-label">Your Phone:</label>
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
+                        </div>
+
+                        <!-- Age Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="age" class="form-label">Your Age:</label>
+                            <input type="number" class="form-control" name="age" id="age" placeholder="Your Age" required="">
+                        </div>
+
+                        <!-- Address Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="address" class="form-label">Your Address:</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Your Address" required="">
+                        </div>
+
+                        <!-- Gender Field -->
+                        {% comment %} <div class="col-lg-4 col-md-6">
+                            <label for="gender" class="form-label">Gender:</label>
+                            <select name="gender" class="form-control" id="gender" required="">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div> {% endcomment %}
+
+                        <!-- Blood Type Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="blood_type" class="form-label">Blood Type/Group:</label>
+                            <select name="blood_type" class="form-control" id="blood_type" required="">
+                                <option value="" disabled selected>Select Blood Type/Group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <!-- Donation Date Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="donation_date" class="form-label">Preferred Donation Date:</label>
+                            <input type="date" name="donation_date" class="form-control" id="donation_date" required="">
+                        </div>
+
+                        <!-- Location Field -->
+                        <div class="col-lg-4 col-md-6">
+                            <label for="location" class="form-label">Donation Location:</label>
+                            <select name="location" class="form-control" id="location" required="">
+                                <option value="" disabled selected>Select a County</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Kericho">Kericho</option>
+                                <option value="Kiambu">Kiambu</option>
+                                <option value="Machakos">Machakos</option>
+                                <option value="Nyeri">Nyeri</option>
+                                <option value="Meru">Meru</option>
+                                <option value="Homabay">Homabay</option>
+                                <option value="Baringo">Baringo</option>
+                                <option value="Taita Taveta">Taita Taveta</option>
+                                <option value="Kakamega">Kakamega</option>
+                                <option value="Vihiga">Vihiga</option>
+                                <option value="Siaya">Siaya</option>
+                                <option value="Kitui">Kitui</option>
+                                <option value="Kwale">Kwale</option>
+                                <option value="Samburu">Samburu</option>
+                                <option value="Turkana">Turkana</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Image Upload Field -->
+                    <div class="form-group mt-3">
+                        <label for="image" class="form-label">Upload Image:</label>
+                        <input type="file" class="form-control" name="image" id="image" accept="image/*" required="">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary" style="background:red; border-radius:20px; border:none;">Register to Donate</button>
+                    </div>
+                </form>
+            </div>
+            <!-- End Donation Form -->
+        </div>
+    </div>
+</section>
+<!-- /Blood Donation Section -->
+
+{% endblock %}

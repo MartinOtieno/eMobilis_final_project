@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Our Team{% endblock %}
+
+{% block content %}
+<!-- Team Section -->
+<section id="team" class="team section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Our Team</h2>
+    <p><span>Meet</span> <span class="description-title">Our Blood Donation Experts</span></p>
+    <h4>Our dedicated team is at the heart of BloodLink Kenya's mission to save lives. With expertise in healthcare, technology, and community outreach, we work tirelessly to ensure that every donor and recipient experience seamless, trustworthy service.</h4>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Team Member 1 -->
+      <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-member">
+          <div class="member-img">
+            <img src="{% static 'assets\img\chefs\doctor3.jpg' %}" class="img-fluid" alt="Kamau Ndegwa">
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>Kamau Ndegwa</h4>
+            <span>Chief Medical Officer</span>
+            <p>Kamau brings a wealth of knowledge in transfusion medicine and ensures that all donations are handled with the highest safety standards.</p>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+
+      <!-- Team Member 2 -->
+      <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-member">
+          <div class="member-img">
+            <img src="{% static 'assets\img\chefs\doctor2.jpg' %}" class="img-fluid" alt="Muthoni Wambui">
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>Muthoni Wambui</h4>
+            <span>Community Outreach Lead</span>
+            <p>Muthoni heads our community initiatives, building strong connections with donors and ensuring their incredible contributions are recognized.</p>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+
+      <!-- Team Member 3 -->
+      <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-member">
+          <div class="member-img">
+            <img src="{% static 'assets\img\chefs\doctor1.jpg' %}" class="img-fluid" alt="Kariuki Mburu">
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>Kariuki Mburu</h4>
+            <span>Technical Support Specialist</span>
+            <p>Kariuki ensures our technology infrastructure is always operational, helping donors and recipients connect effortlessly through our platform.</p>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+
+    </div>
+  </div>
+</section><!-- End Team Section -->
+{% endblock %}

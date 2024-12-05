@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<!-- About Section -->
+<section id="about" class="about section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>About Us<br></h2>
+        <p><span>Learn More</span> <span class="description-title">About BloodLink Kenya</span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row gy-4">
+
+            <!-- Left Column with Image -->
+            <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+                <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid mb-4" alt="About BloodLink Kenya">
+
+                <div class="contact-us">
+                    <h3>Contact Us</h3>
+                    <p>+254 700 123 456</p>
+                </div>
+            </div>
+
+            <!-- Right Column with Content -->
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
+                <div class="content ps-0 ps-lg-5">
+                    <p class="fst-italic">
+                        BloodLink Kenya is dedicated to connecting blood donors with recipients across the nation. We believe in the power of technology to save lives and foster a community that cares.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check-circle-fill"></i> <span>Find and request blood quickly and efficiently using our platform.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i> <span>Register as a donor and make a life-saving impact in your community.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i> <span>Access reliable blood donation services in real time.</span></li>
+                    </ul>
+                    <p>
+                        At BloodLink Kenya, we are committed to providing a seamless, trusted, and accessible platform that bridges the gap between those in need and those willing to help. Together, we can make a difference.
+                    </p>
+
+                    <div class="position-relative mt-4">
+                        <img src="{% static 'assets\img\blood2.jpg' %}" class="img-fluid" alt="Video preview image">
+                        <a href="https://youtu.be/JY5fPvW_YUQ?si=OlaRfnuTsM9NdaP7" class="glightbox pulsating-play-btn" aria-label="Play video"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /About Section -->
+
+<!-- Why Us Section -->
+<section id="why-us" class="why-us section light-background">
+    <div class="container">
+        <div class="row gy-4">
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-box">
+                    <h3>Why Choose BloodLink Kenya?</h3>
+                    <p>
+                        BloodLink Kenya offers a reliable, safe, and efficient platform to connect donors with those in urgent need of blood. Together, we can save lives and strengthen our community.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://www.ktta.go.ke/#:~:text=The%20Kenya%20Blood%20Transfusion%20and,all%20transfusing%20hospitals%20in%20Kenya." class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div><!-- End Why Box -->
+
+            <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-xl-4">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-clipboard-data"></i>
+                            <h4>Quick Blood Access</h4>
+                            <p>Find compatible blood donors in your area instantly.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-gem"></i>
+                            <h4>Verified Donors</h4>
+                            <p>Connect with verified donors to ensure safety and reliability.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-inboxes"></i>
+                            <h4>Nationwide Network</h4>
+                            <p>Our platform connects blood donors and recipients across Kenya.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><!-- /Why Us Section -->
+
+<!-- Stats Section -->
+<section id="stats" class="stats section dark-background">
+    <img src="{% static 'assets\img\blood4.jpg' %}" alt="Background stats image" data-aos="fade-in">
+
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Registered Donors</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="300" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Successful Donations</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Supported Hospitals</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Partnerships</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+        </div>
+    </div>
+</section><!-- /Stats Section -->
+{% endblock %}

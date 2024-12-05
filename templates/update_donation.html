@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Donation{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Update Donation</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="donation_id" class="form-label">Donation ID:</label>
+            <input 
+                type="text" 
+                id="donation_id" 
+                name="donation_id" 
+                class="form-control" 
+                value="{{ donation.id }}" 
+                readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-control" 
+                value="{{ donation.name }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                value="{{ donation.email }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input 
+                type="text" 
+                id="phone" 
+                name="phone" 
+                class="form-control" 
+                value="{{ donation.phone }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="blood_type" class="form-label">Blood Type:</label>
+            <select 
+                id="blood_type" 
+                name="blood_type" 
+                class="form-control" 
+                required>
+                <option value="A+" {% if donation.blood_type == "A+" %}selected{% endif %}>A+</option>
+                <option value="A-" {% if donation.blood_type == "A-" %}selected{% endif %}>A-</option>
+                <option value="B+" {% if donation.blood_type == "B+" %}selected{% endif %}>B+</option>
+                <option value="B-" {% if donation.blood_type == "B-" %}selected{% endif %}>B-</option>
+                <option value="AB+" {% if donation.blood_type == "AB+" %}selected{% endif %}>AB+</option>
+                <option value="AB-" {% if donation.blood_type == "AB-" %}selected{% endif %}>AB-</option>
+                <option value="O+" {% if donation.blood_type == "O+" %}selected{% endif %}>O+</option>
+                <option value="O-" {% if donation.blood_type == "O-" %}selected{% endif %}>O-</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="donation_date" class="form-label">Donation Date:</label>
+            <input 
+                type="date" 
+                id="donation_date" 
+                name="donation_date" 
+                class="form-control" 
+                value="{{ donation.donation_date }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input 
+                type="text" 
+                id="location" 
+                name="location" 
+                class="form-control" 
+                value="{{ donation.location }}" 
+                required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Donation</button>
+        <a href="{% url 'show_donations' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

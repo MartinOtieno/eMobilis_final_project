@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Saerch Blood{% endblock %}
+{% block content %}
+
+    <h1>Search Blood Donations</h1>
+    <form method="get" action="{% url 'search_blood_donations' %}">
+        <!-- Blood Type Dropdown -->
+        <label for="blood_type">Blood Type:</label>
+        <select name="blood_type" id="blood_type">
+            <option value="">--Select Blood Type--</option>
+            {% for blood_type, label in blood_group_choices %}
+                <option value="{{ blood_type }}" {% if blood_type_query == blood_type %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Location Dropdown -->
+        <label for="location">Location:</label>
+        <select name="location" id="location">
+            <option value="">--Select Location--</option>
+            {% for location, label in kenyan_counties %}
+                <option value="{{ location }}" {% if location_query == location %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Results</h2>
+    {% if results %}
+        <ul>
+            {% for donation in results %}
+                <li>
+                    {% if donation.image %}
+                        <strong>Image:</strong><br><img src="{{ donation.image.url }}" alt="{{ donation.name }}" width="100"><br>
+                    {% else %}
+                        <strong>Image:</strong> No image available<br>
+                    {% endif %}
+                    <strong>Name:</strong> {{ donation.name }}<br>
+                    <strong>Blood Type:</strong> {{ donation.blood_type }}<br>
+                    <strong>Location:</strong> {{ donation.location }}<br>
+                    <strong>Donation Date:</strong> {{ donation.donation_date }}<br>
+                    <strong>Contact:</strong> {{ donation.phone }} | {{ donation.email }}<br>
+                    <strong>Address:</strong> {{ donation.address }}<br>
+                    <strong>Age:</strong> {{ donation.age }}<br>
+                    
+                    <!-- Book Now Button -->
+                    {% comment %} {% url 'book_blood_donation' donation.id %} {% endcomment %}
+                    <form method="get" action=""> 
+                        <button type="submit">Book Now</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+{% endblock %}
