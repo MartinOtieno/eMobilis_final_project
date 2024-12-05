@@ -17,5 +17,6 @@ urlpatterns = [
     path('update/<int:donation_id>/', views.update_donation, name='update_donation'),
     path('upload/', views.upload_image, name='upload_image'),
     path('search-blood-donations/', views.search_blood_donations, name='search_blood_donations'),
+    path('search-blood-donation/', views.search_blood_donation, name='search_blood_donation'),
     path('add-donor/', views.add_donor, name='add_donor'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

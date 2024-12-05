@@ -44,7 +44,6 @@ class BloodDonation(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     age = models.IntegerField(default='20')
     address = models.TextField(default='No address provided')
-    # gender = models.CharField(max_length=10, default='male')
 
     def __str__(self):
         return f"{self.name} - {self.blood_type} ({self.location})"

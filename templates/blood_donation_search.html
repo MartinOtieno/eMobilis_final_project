@@ -1,63 +1,187 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Saerch Blood{% endblock %}
+{% block title %}Search Blood{% endblock %}
 {% block content %}
 
-    <h1>Search Blood Donations</h1>
-    <form method="get" action="{% url 'search_blood_donations' %}">
-        <!-- Blood Type Dropdown -->
-        <label for="blood_type">Blood Type:</label>
-        <select name="blood_type" id="blood_type">
-            <option value="">--Select Blood Type--</option>
-            {% for blood_type, label in blood_group_choices %}
-                <option value="{{ blood_type }}" {% if blood_type_query == blood_type %}selected{% endif %}>
-                    {{ label }}
-                </option>
-            {% endfor %}
-        </select>
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        color: #333;
+    }
 
-        <!-- Location Dropdown -->
-        <label for="location">Location:</label>
-        <select name="location" id="location">
-            <option value="">--Select Location--</option>
-            {% for location, label in kenyan_counties %}
-                <option value="{{ location }}" {% if location_query == location %}selected{% endif %}>
-                    {{ label }}
-                </option>
-            {% endfor %}
-        </select>
+    h1 {
+        text-align: center;
+        color: #c9302c;
+        margin-top: 20px;
+    }
 
-        <button type="submit">Search</button>
-    </form>
+    /* Layout Container */
+    .layout-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px; /* Space between form and results */
+        margin-top: 30px;
+        padding: 0 20px;
+    }
 
-    <h2>Results</h2>
-    {% if results %}
-        <ul>
-            {% for donation in results %}
-                <li>
-                    {% if donation.image %}
-                        <strong>Image:</strong><br><img src="{{ donation.image.url }}" alt="{{ donation.name }}" width="100"><br>
-                    {% else %}
-                        <strong>Image:</strong> No image available<br>
-                    {% endif %}
-                    <strong>Name:</strong> {{ donation.name }}<br>
-                    <strong>Blood Type:</strong> {{ donation.blood_type }}<br>
-                    <strong>Location:</strong> {{ donation.location }}<br>
-                    <strong>Donation Date:</strong> {{ donation.donation_date }}<br>
-                    <strong>Contact:</strong> {{ donation.phone }} | {{ donation.email }}<br>
-                    <strong>Address:</strong> {{ donation.address }}<br>
-                    <strong>Age:</strong> {{ donation.age }}<br>
-                    
-                    <!-- Book Now Button -->
-                    {% comment %} {% url 'book_blood_donation' donation.id %} {% endcomment %}
-                    <form method="get" action=""> 
-                        <button type="submit">Book Now</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+    /* Centering Form */
+    .form-container {
+        flex: 1;
+        max-width: 400px;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #c9302c;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #a52620;
+    }
+
+    /* Results Section */
+    .results-section {
+        flex: 2;
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 80px;
+    }
+
+    .results-section h2 {
+        margin-top: 0;
+        color: #fff;
+    }
+
+    .results-section ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .results-section li {
+        background-color: #fff;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        line-height: 1.6;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    img {
+        display: block;
+        margin: 10px 0;
+        max-width: 100px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+    }
+</style>
+
+<div class="layout-container">
+    <!-- Form Container -->
+    <div class="form-container">
+        <form method="get" action="{% url 'search_blood_donations' %}">
+            <label for="blood_type">Blood Type:</label>
+            <select name="blood_type" id="blood_type">
+                <option value="">--Select Blood Type--</option>
+                {% for blood_type, label in blood_group_choices %}
+                    <option value="{{ blood_type }}" {% if blood_type_query == blood_type %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="location">Location:</label>
+            <select name="location" id="location">
+                <option value="">--Select Location--</option>
+                {% for location, label in kenyan_counties %}
+                    <option value="{{ location }}" {% if location_query == location %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section">
+        <h2>Results:</h2>
+        {% if results %}
+            <ul>
+                {% for donation in results %}
+                    <li>
+                        {% if donation.image %}
+                            <strong>Image:</strong><br>
+                            <img src="{{ donation.image.url }}" alt="{{ donation.name }}">
+                        {% else %}
+                            <strong>Image:</strong> No image available<br>
+                        {% endif %}
+                        <strong>Name:</strong> {{ donation.name }}<br>
+                        <strong>Blood Type:</strong> {{ donation.blood_type }}<br>
+                        <strong>Location:</strong> {{ donation.location }}<br>
+                        <strong>Donation Date:</strong> {{ donation.donation_date }}<br>
+                        <strong>Contact:</strong> {{ donation.phone }} | {{ donation.email }}<br>
+                        <strong>Address:</strong> {{ donation.address }}<br>
+                        <strong>Age:</strong> {{ donation.age }}<br>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock %}

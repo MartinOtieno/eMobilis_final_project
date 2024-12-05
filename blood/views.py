@@ -8,6 +8,7 @@ from .forms import DonorForm
 # from .models import UploadedImage
 # from models import UploadedImage
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
 from blood import models
 
@@ -53,7 +54,7 @@ def contact_page(request):
 #     """ Display the booking page """
 #     return render(request, 'donate.html')
 
-#Function to push the booking to the DB
+@login_required(login_url='accounts:login')
 def donate_page(request):
     """ Function to pust the bookings DB """
     if request.method == 'POST':
@@ -64,7 +65,6 @@ def donate_page(request):
             phone = request.POST['phone'],
             age = request.POST['age'],
             address = request.POST['address'],
-            # gender = request.POST['gender'],
             blood_type = request.POST['blood_type'],
             donation_date = request.POST['donation_date'],
             location = request.POST['location'],
@@ -130,7 +130,8 @@ def upload_image(request):
         
         return render(request, 'donate.html', {'file_url':file_url})
     return render(request, "donate.html")
-# search bar
+
+@login_required(login_url='accounts:login')
 def search_blood_donations(request):
     blood_type_query = request.GET.get('blood_type')  # Get selected blood type
     location_query = request.GET.get('location')      # Get selected location
@@ -166,7 +167,7 @@ def add_donor(request):
 
 
 #search button
-def search_blood_donations(request):
+def search_blood_donation(request):
     blood_type_query = request.GET.get('blood_type', '')  # Get blood_type from query string
     donations = BloodDonation.objects.all()
 
