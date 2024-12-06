@@ -1,0 +1,147 @@
+{% extends "common.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <style>
+    /* Dashboard Header Styles */
+    {% comment %} #3b5998 {% endcomment %}
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: red;
+      color: white;
+      border-radius: 8px;
+    }
+
+    .dashboard-header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .dashboard-header nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    .dashboard-header nav ul li {
+      margin-right: 20px;
+    }
+
+    .dashboard-header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .dashboard-header nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .dashboard-header .user-info {
+      text-align: right;
+    }
+
+    /* Main Content Styling */
+    .dashboard-content {
+      padding: 30px;
+    }
+
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .dashboard-cards .card {
+      background-color: #f4f4f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .dashboard-cards .card h3 {
+      font-size: 22px;
+      color: #333;
+    }
+
+    .dashboard-cards .card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .dashboard-cards .card a:hover {
+      background-color: #2d4373;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .dashboard-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Dashboard Header -->
+  <header>
+    <div class="dashboard-header">
+      <span class="logo">BloodLink KE</span>
+      <nav>
+        <ul>
+          <li><a href="{% url 'index_page' %}">Home</a></li>
+          <li><a href="{% url 'donate_page' %}">Become a Donor</a></li>
+          <li><a href="{% url 'search_blood_donations' %}">Search a Donor</a></li>
+          <li><a href="{% url 'contact_page' %}">Contact</a></li>
+          <li><a href="{% url 'requests' %}">Requests</a></li>
+        </ul>
+      </nav>
+      <div class="user-info">
+        <p>Hello, {{ request.user.username }}</p>
+        <p>Welcome to your dashboard!</p>
+        <p style="color:#fff";><a href="{% url 'password_change' %}">Change Password</a></p>
+        <p style="color:#fff";><a href="{% url 'logout' %}">Logout</a></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="dashboard-content">
+          {% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+    <h2>Dashboard Overview</h2>
+    <div class="dashboard-cards">
+      <div class="card">
+        <h3>Donor Status</h3>
+        <p>Manage your donation status and records.</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="card">
+        <h3>Your Requests</h3>
+        <p>View your donation requests and responses.</p>
+        <a href="{% url 'requests' %}">View Requests</a>
+      </div>
+      <div class="card">
+        <h3>Community Impact</h3>
+        <p>See how your donations are helping others.</p>
+        <a href="{% url 'gallery_page' %}">View Impact</a>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

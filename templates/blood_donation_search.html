@@ -125,7 +125,33 @@
         color: #fff;
         font-size: 20px;
     }
+
+    /* Back to Dashboard Link */
+    .back-to-dashboard {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-to-dashboard a {
+        color: #c9302c;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .back-to-dashboard a:hover {
+        text-decoration: underline;
+    }
 </style>
+
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
 <div class="layout-container">
     <!-- Form Container -->
@@ -175,6 +201,13 @@
                         <strong>Contact:</strong> {{ donation.phone }} | {{ donation.email }}<br>
                         <strong>Address:</strong> {{ donation.address }}<br>
                         <strong>Age:</strong> {{ donation.age }}<br>
+    
+                        <!-- Book Now Button -->
+                        <form method="post" action="{% url 'book_donor' donation.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="book-now-btn">Book Now</button>
+                        </form>
+                        
                     </li>
                 {% endfor %}
             </ul>
@@ -182,6 +215,12 @@
             <p>No results found.</p>
         {% endif %}
     </div>
+    
+</div>
+
+<!-- Back to Dashboard Link -->
+<div class="back-to-dashboard">
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
 </div>
 
 {% endblock %}

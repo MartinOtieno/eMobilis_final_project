@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.timezone import now
+
 
 class BloodDonation(models.Model):
     BLOOD_GROUP_CHOICES = [
@@ -40,10 +42,16 @@ class BloodDonation(models.Model):
     donation_date = models.DateField()
     location = models.CharField(max_length=50, choices=KENYAN_COUNTIES)
     image = models.ImageField(upload_to='uploads/donation_images/', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
     age = models.IntegerField(default='20')
     address = models.TextField(default='No address provided')
+    
+    status = models.CharField(
+        max_length=20,
+        choices=[('Available', 'Available'), ('Booked', 'Booked')],
+        default='Available'
+    )
 
     def __str__(self):
         return f"{self.name} - {self.blood_type} ({self.location})"

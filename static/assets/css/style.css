@@ -55,3 +55,25 @@ body {
 #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -85px;
 }
+
+
+/* button for booking */
+
+.book-now-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #5cb85c;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.book-now-btn:hover {
+    background-color: #4cae4c;
+}

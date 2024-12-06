@@ -3,6 +3,8 @@ from . import views
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
 
 #urls for apges
 urlpatterns = [
@@ -18,5 +20,14 @@ urlpatterns = [
     path('upload/', views.upload_image, name='upload_image'),
     path('search-blood-donations/', views.search_blood_donations, name='search_blood_donations'),
     path('search-blood-donation/', views.search_blood_donation, name='search_blood_donation'),
+    path('book_donor/<int:donor_id>/', views.book_donor, name='book_donor'),
     path('add-donor/', views.add_donor, name='add_donor'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('requests/', views.retrieve_donation, name='requests'),
+    
+    path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', auth_views.PasswordResetDoneView.as_view(), name='password_change_done'),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

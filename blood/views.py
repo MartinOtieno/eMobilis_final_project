@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import BloodDonation
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 from django.core.mail import send_mail
 from .forms import DonorForm
@@ -8,9 +9,9 @@ from .forms import DonorForm
 # from .models import UploadedImage
 # from models import UploadedImage
 from django.core.files.storage import FileSystemStorage
-from django.contrib.auth.decorators import login_required
 
 from blood import models
+from django.contrib import messages
 
 # Create your views here.
 # Home
@@ -49,12 +50,8 @@ def contact_page(request):
         # Provide a success message
         return render(request, 'contact.html', {'success': 'Your message has been sent successfully!'})
     return render(request, 'contact.html')
-# booking
-# def donate_page(request):
-#     """ Display the booking page """
-#     return render(request, 'donate.html')
 
-@login_required(login_url='accounts:login')
+@login_required
 def donate_page(request):
     """ Function to pust the bookings DB """
     if request.method == 'POST':
@@ -68,8 +65,7 @@ def donate_page(request):
             blood_type = request.POST['blood_type'],
             donation_date = request.POST['donation_date'],
             location = request.POST['location'],
-            image = request.FILES['image'],  # Handle the uploaded image
-
+            image = request.FILES['image'],
         )
         # save the variable
         donations.save()
@@ -152,6 +148,22 @@ def search_blood_donations(request):
         'kenyan_counties': BloodDonation.KENYAN_COUNTIES,
     })
     
+@login_required(login_url='accounts:login')
+def book_donor(request, donor_id):
+    # Get the donor object based on the ID
+    donation = BloodDonation.objects.get(id=donor_id)
+    
+    # Example booking logic: mark the donation as booked (or implement the actual logic)
+    # You can also save any additional booking details if needed.
+    # donation.is_booked = True
+    # donation.save()
+
+    # Add a success message
+    messages.success(request, f'You have successfully booked with {donation.name}.')
+    
+    # Redirect the user back to their dashboard (or another page)
+    return redirect('dashboard')  # Adjust 'dashboard' to the name of the URL for the user's dashboard
+    
 def add_donor(request):
     if request.method == 'POST':
         form = DonorForm(request.POST, request.FILES)
@@ -182,5 +194,30 @@ def search_blood_donation(request):
             ('B+', 'B+'), ('B-', 'B-'), 
             ('AB+', 'AB+'), ('AB-', 'AB-'), 
             ('O+', 'O+'), ('O-', 'O-')
-        ],  # Replace this with your dynamic choices if applicable
+        ],
     })
+    
+def book_donor(request, donor_id):
+    # Fetch the donor by ID
+    donor = get_object_or_404(BloodDonation, id=donor_id)
+    
+    # Update the donor's status to "Booked" if it's "Available"
+    if donor.status == "Available":
+        donor.status = "Booked"
+        donor.save()
+        messages.success(request, f"Successfully booked {donor.name} for donation.")
+    else:
+        messages.error(request, f"{donor.name} is already booked.")
+    
+    # Redirect back to the search results or another page
+    return redirect('search_blood_donations')
+
+@login_required
+def dashboard(request):
+    return render(request, 'registration/dashboard.html', {'section': 'dashboard'})
+
+def retrieve_donation(request):
+    # Create a variable to store these donations
+    donations = BloodDonation.objects.all()
+    context = {'donations':donations} 
+    return render(request, 'requests.html', context)

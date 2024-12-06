@@ -33,8 +33,11 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Blood Type</th>
+                <th>Age</th>
                 <th>Donation Date</th>
                 <th>Location</th>
+                <th>Address</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -52,21 +55,27 @@
                 <td>{{ donation.email }}</td>
                 <td>{{ donation.phone }}</td>
                 <td>{{ donation.blood_type }}</td>
+                <td>{{ donation.age }}</td>
                 <td>{{ donation.donation_date }}</td>
                 <td>{{ donation.location }}</td>
+                <td>{{ donation.address }}</td>
+                <td>
+                    <span class="badge {% if donation.status == 'Available' %}bg-success{% else %}bg-danger{% endif %}">
+                        {{ donation.status }}
+                    </span>
+                </td>
                 <td>
                     <a href="{% url 'delete_donation' donation.id %}" class="btn btn-danger" onclick="return confirm('Do you really want to delete this donation record?');">
-                       Delete
+                        Delete
                     </a>
-
                     <a href="{% url 'update_donation' donation.id %}" class="btn btn-warning">
-                       Edit
+                        Edit
                     </a>
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="9" class="text-center">No donations found.</td>
+                <td colspan="12" class="text-center">No donations found.</td>
             </tr>
             {% endfor %}
         </tbody>
