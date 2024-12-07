@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% if messages %}
+{% comment %} {% if messages %}
     <ul class="messages">
         {% for message in messages %}
             <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
@@ -12,7 +12,7 @@
             </li>
         {% endfor %}
     </ul>
-{% endif %}
+{% endif %} {% endcomment %}
 
 <!-- Hero Section -->
 <section id="hero" class="hero section light-background">

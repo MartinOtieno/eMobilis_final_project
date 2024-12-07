@@ -5,6 +5,8 @@
 
 <div class="container mt-4">
           <h2>View Requests</h2>
+          <a href="{% url 'dashboard' %}" class="btn btn-primary">Dashboard</a>
+
       
               <!-- Search Form -->
               <form method="get" action="{% url 'search_blood_donation' %}" class="d-flex">
@@ -36,7 +38,7 @@
                       <th>Donation Date</th>
                       <th>Location</th>
                       <th>Address</th>
-                      <th>Status</th>
+                      {% comment %} <th>Status</th> {% endcomment %}
                       <th>Action</th>
                   </tr>
               </thead>
@@ -58,11 +60,11 @@
                       <td>{{ donation.donation_date }}</td>
                       <td>{{ donation.location }}</td>
                       <td>{{ donation.address }}</td>
-                      <td>
+                      {% comment %} <td>
                           <span class="badge {% if donation.status == 'Available' %}bg-success{% else %}bg-danger{% endif %}">
                               {{ donation.status }}
                           </span>
-                      </td>
+                      </td> {% endcomment %}
                       
                       <td>
                           <a href="{% url 'update_donation' donation.id %}" class="btn btn-warning">

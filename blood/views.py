@@ -70,7 +70,7 @@ def donate_page(request):
         # save the variable
         donations.save()
         # redirect
-        return redirect('index_page')
+        return redirect('dashboard')
     else:
         return render(request, 'donate.html')
     
@@ -216,7 +216,7 @@ def book_donor(request, donor_id):
 def dashboard(request):
     return render(request, 'registration/dashboard.html', {'section': 'dashboard'})
 
-def retrieve_donation(request):
+def requests(request):
     # Create a variable to store these donations
     donations = BloodDonation.objects.all()
     context = {'donations':donations} 
