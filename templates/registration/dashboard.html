@@ -99,9 +99,11 @@
         <ul>
           <li><a href="{% url 'index_page' %}">Home</a></li>
           <li><a href="{% url 'donate_page' %}">Become a Donor</a></li>
-          <li><a href="{% url 'search_blood_donations' %}">Search a Donor</a></li>
+          {% comment %} <li><a href="{% url 'search_blood_donations' %}">Search a Donor</a></li> {% endcomment %}
+          <li><a href="{% url 'team_page' %}">Our Team</a></li>
+          <li><a href="{% url 'gallery_page' %}">Gallery</a></li>
           <li><a href="{% url 'contact_page' %}">Contact</a></li>
-          <li><a href="{% url 'requests' %}">Requests</a></li>
+          <li><a href="{% url 'show_donations' %}">Donor's List</a></li>
         </ul>
       </nav>
       <div class="user-info">
@@ -115,7 +117,7 @@
 
   <!-- Main Dashboard Content -->
   <main class="dashboard-content">
-          {% if messages %}
+          {% comment %} {% if messages %}
 <div class="container mt-3">
     {% for message in messages %}
     <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
@@ -123,7 +125,7 @@
     </div>
     {% endfor %}
 </div>
-{% endif %}
+{% endif %} {% endcomment %}
     <h2>Dashboard Overview</h2>
     <div class="dashboard-cards">
       <div class="card">
@@ -141,6 +143,16 @@
         <p>See how your donations are helping others.</p>
         <a href="{% url 'gallery_page' %}">View Impact</a>
       </div>
+
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                  {{ message }}
+              </li>
+          {% endfor %}
+      </ul>
+       {% endif %}
     </div>
   </main>
 

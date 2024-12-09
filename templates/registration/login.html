@@ -9,12 +9,21 @@
         background-color: #f4f4f9;
         margin: 0;
         padding: 0;
-        display: flex;
+        {% comment %} display: flex; {% endcomment %}
         justify-content: center;
         align-items: center;
         height: 100vh;
     }
-
+.body{
+    font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+}
     /* Form container */
     .form-container {
         background-color: #fff;
@@ -88,23 +97,34 @@
         text-decoration: underline;
     }
 </style>
-<div class="form-container">
-    <h1>Log-in</h1>
-    {% if form.errors %}
-    <p class="message error">
-        Please, check your username and password.
-    </p>
-    {% else %}
-    <p class="message info">
-        Please, use the following form to log in.
-    </p>
-    {% endif %}
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <input type="submit" value="Log in">
-    </form>
-    <p>Not yet registered: <a href="{% url 'accounts:register' %}">Register</a></p>
+<div class="body">
+    <div class="form-container">
+        <h1>Log-in</h1>
+        {% if form.errors %}
+        <p class="message error">
+            Please, check your username and password.
+        </p>
+        {% else %}
+        <p class="message info">
+            Please, use the following form to log in.
+        </p>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <input type="submit" value="Log in">
+        </form>
+        <p>Not yet registered: <a href="{% url 'accounts:register' %}">Register</a></p>
+    </div>
 </div>
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
