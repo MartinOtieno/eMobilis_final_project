@@ -127,7 +127,7 @@ def upload_image(request):
         return render(request, 'donate.html', {'file_url':file_url})
     return render(request, "donate.html")
 
-@login_required(login_url='accounts:login')
+# @login_required
 def search_blood_donations(request):
     blood_type_query = request.GET.get('blood_type')  # Get selected blood type
     location_query = request.GET.get('location')      # Get selected location
@@ -148,7 +148,7 @@ def search_blood_donations(request):
         'kenyan_counties': BloodDonation.KENYAN_COUNTIES,
     })
     
-@login_required(login_url='accounts:login')
+@login_required
 def book_donor(request, donor_id):
     # Get the donor object based on the ID
     donation = BloodDonation.objects.get(id=donor_id)

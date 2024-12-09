@@ -16,14 +16,15 @@
             <ul>
                 <li><a href="{% url 'index_page' %}" class="active">Home</a></li>
                 <li><a href="{% url 'about_page' %}">About Us</a></li>
-                {% comment %} <li class="dropdown">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blood <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'donate_page' %}">Become a Donor</a></li>
                         <li><a href="{% url 'search_blood_donations' %}">Search Blood</a></li>
+                        <li><a href="{% url 'donate_page' %}">Become a Donor</a></li>
+                        
                     </ul>
-                </li> {% endcomment %}
-                <li><a href="{% url 'search_blood_donations' %}">Search Blood</a></li>
+                </li>
+                {% comment %} <li><a href="{% url 'search_blood_donations' %}">Search Blood</a></li> {% endcomment %}
                 <li><a href="{% url 'team_page' %}">Our Team</a></li>
                 <li><a href="{% url 'gallery_page' %}">Gallery</a></li>
                 <li><a href="{% url 'contact_page' %}">Contact Us</a></li>
@@ -37,7 +38,16 @@
         <!-- Call-to-Action Button -->
         {% comment %} <a class="btn-getstarted" href="#">Donate Blood</a> {% endcomment %}
         <div class="accounts d-flex">
-            <a href="{% url 'login' %}" class="btn-getstarted" style="margin-right:10px">Sign In</a>
+            <div class="dropdown">
+                <a href="#" class="btn-getstarted dropdown-toggle" style="margin-right:10px" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  Sign In
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Donor</a></li>
+                  <li><a class="dropdown-item" href="http://127.0.0.1:8000/admin/login/?next=/admin/">Admin</a></li>
+
+                </ul>
+              </div>
             {% comment %} <a href="{% url 'accounts:register' %}" class="btn-getstarted">Sign Up</a> {% endcomment %}
         </div>
 
