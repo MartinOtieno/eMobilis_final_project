@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{% block title %}Home{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets\img\logo1-removebg-preview.png' %}" rel="icon">
+    <link href="{% static 'assets/img/logo1-removebg-preview.png' %}" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+
+</head>
+
+<body>
+    <style>
+        /* Dashboard Header Styles */
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgb(250, 45, 45);
+            color: white;
+            border-radius: 8px;
+            font-size: 17px;
+        }
+        
+        .dashboard-header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .dashboard-header nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .dashboard-header nav ul li {
+            margin-right: 20px;
+        }
+        
+        .dashboard-header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .dashboard-header nav ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        .dashboard-header .user-info {
+            text-align: right;
+        }
+        /* Main Content Styling */
+        
+        .dashboard-content {
+            padding: 30px;
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .dashboard-cards .card {
+            background-color: #f4f4f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .dashboard-cards .card h3 {
+            font-size: 22px;
+            color: #333;
+        }
+        
+        .dashboard-cards .card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .dashboard-cards .card a:hover {
+            background-color: #2d4373;
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Dashboard Header -->
+    <header>
+        <div class="dashboard-header">
+            <span class="logo">BloodLink KE</span>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'index_page' %}">Home</a></li>
+                    <li><a href="{% url 'donate_page' %}">Become a Donor</a></li>
+                    {% comment %}
+                    <li><a href="{% url 'search_blood_donations' %}">Search a Donor</a></li> {% endcomment %}
+                    <li><a href="{% url 'team_page' %}">Our Team</a></li>
+                    <li><a href="{% url 'gallery_page' %}">Gallery</a></li>
+                    <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                    <li><a href="{% url 'show_donations' %}">Donor's List</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <p>Hello, {{ request.user.username }}</p>
+                <p>Welcome to your dashboard!</p>
+                <p style="color:#fff" ;><a href="{% url 'password_change' %}">Change Password</a></p>
+                <p style="color:#fff" ;><a href="{% url 'logout' %}">Logout</a></p>
+            </div>
+        </div>
+    </header>
+
+    {% block content %} {% endblock %}
+    <footer id="footer" class="footer dark-background">
+        <div class="container">
+            <div class="row gy-3">
+
+                <!-- Address Section -->
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-geo-alt icon"></i>
+                    <div class="address">
+                        <h4>Address</h4>
+                        <p>Bungoma - Chwele Street<br>Nairobi, Kenya</p>
+                    </div>
+                </div>
+                <!-- End Address Section -->
+
+                <!-- Contact Section -->
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-telephone icon"></i>
+                    <div>
+                        <h4>Contact</h4>
+                        <p>
+                            <strong>Phone:</strong> +254 700 123 456<br>
+                            <strong>Email:</strong> contact@bloodlink.com
+                        </p>
+                    </div>
+                </div>
+                <!-- End Contact Section -->
+
+                <!-- Opening Hours Section -->
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-clock icon"></i>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <p>
+                            <strong>Mon-Sat:</strong> 10AM - 10PM<br>
+                            <strong>Sunday:</strong> 12PM - 7PM
+                        </p>
+                    </div>
+                </div>
+                <!-- End Opening Hours Section -->
+
+                <!-- Social Media Section -->
+                <div class="col-lg-3 col-md-6">
+                    <h4>Follow Us</h4>
+                    <div class="social-links d-flex">
+                        <a href="https://twitter.com/bloodlink" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://facebook.com/bloodlink" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/bloodlink" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://linkedin.com/company/bloodlink" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <!-- End Social Media Section -->
+
+            </div>
+        </div>
+
+        <div class="container text-center mt-4">
+            <p>&copy; <span>{{ current_year }}</span> <strong class="px-1 sitename">BloodLink Kenya</strong> All Rights Reserved</p>
+            <div class="credits">
+                Designed by <a href="#">Martin Otieno</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!-- Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>
