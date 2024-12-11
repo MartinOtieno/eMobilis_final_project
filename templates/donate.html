@@ -34,9 +34,17 @@
                         <!-- Phone Field -->
                         <div class="col-lg-4 col-md-6">
                             <label for="phone" class="form-label">Your Phone:</label>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="phone" 
+                                id="phone" 
+                                placeholder="Your Phone" 
+                                required 
+                                pattern="(07\d{8}|(\+254)\d{9})" 
+                                maxlength="13"
+                                title="Phone number must start with 07 (10 digits total) or +254 (13 characters total, including the prefix).">
                         </div>
-
                         <!-- Age Field -->
                         <div class="col-lg-4 col-md-6">
                             <label for="age" class="form-label">Your Age:</label>

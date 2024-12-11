@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Update Donation{% endblock %}
+{% block title %}Update Donors' List{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <h2>Update Donation</h2>
-    <form method="POST">
+    <form method="POST" style ="margin-bottom: 40px; margin-top: 40px; font-size: 16px;"> 
         {% csrf_token %}
         
         <div class="mb-3">
@@ -92,8 +92,31 @@
                 value="{{ donation.location }}" 
                 required>
         </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Age:</label>
+            <input 
+                type="text" 
+                id="age" 
+                name="age" 
+                class="form-control" 
+                value="{{ donation.age }}" 
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">address:</label>
+            <input 
+                type="text" 
+                id="address" 
+                name="address" 
+                class="form-control" 
+                value="{{ donation.address }}" 
+                required>
+        </div>
         
-        <button type="submit" class="btn btn-primary">Update Donation</button>
+
+        <button type="submit" class="btn btn-primary">Update Donors</button>
         <a href="{% url 'show_donations' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>

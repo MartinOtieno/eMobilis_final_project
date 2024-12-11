@@ -99,6 +99,8 @@ def update_donation(request, donation_id):
         donation.blood_type = request.POST.get('blood_type')
         donation.donation_date = request.POST.get('donation_date')
         donation.location = request.POST.get('location')
+        donation.address = request.POST.get('address')
+        donation.age = request.POST.get('age')
         
         donation.save()# Save the updated donation record
         
